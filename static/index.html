@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Météo Intelligente 🌦️</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🌦️ API Météo Intelligente</h1>
+                <p>Obtenez la météo en temps réel et les prévisions</p>
+            </div>
+        </header>
+
+        <!-- SEARCH SECTION -->
+        <section class="search-section">
+            <div class="search-container">
+                <h2>Rechercher la Météo</h2>
+                
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="city">
+                        🏙️ Par Ville
+                    </button>
+                    <button class="tab-button" data-tab="gps">
+                        📍 Par GPS
+                    </button>
+                </div>
+
+                <!-- City Search -->
+                <div id="city-tab" class="tab-content active">
+                    <div class="form-group">
+                        <label for="city-input">Sélectionnez ou tapez une ville :</label>
+                        <div class="city-search-container">
+                            <input 
+                                type="text" 
+                                id="city-input" 
+                                placeholder="Tapez pour chercher..."
+                                value="Paris"
+                                autocomplete="off"
+                            >
+                            <ul id="city-suggestions" class="city-suggestions hidden"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GPS Search -->
+                <div id="gps-tab" class="tab-content">
+                    <div class="form-group">
+                        <label>Coordonnées GPS :</label>
+                        <div class="gps-inputs">
+                            <input 
+                                type="number" 
+                                id="lat-input" 
+                                placeholder="Latitude"
+                                step="0.0001"
+                            >
+                            <input 
+                                type="number" 
+                                id="lon-input" 
+                                placeholder="Longitude"
+                                step="0.0001"
+                            >
+                        </div>
+                        <button id="use-location-btn" class="secondary-btn">
+                            📍 Utiliser ma Position
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Options -->
+                <div class="form-group">
+                    <label for="units-select">Unités :</label>
+                    <select id="units-select">
+                        <option value="metric">Métrique (°C, m/s)</option>
+                        <option value="imperial">Impériale (°F, mph)</option>
+                    </select>
+                </div>
+
+                <!-- Buttons -->
+                <div class="button-group">
+                    <button id="current-weather-btn" class="primary-btn">
+                        ⚡ Météo Actuelle
+                    </button>
+                    <button id="forecast-btn" class="primary-btn">
+                        📅 Prévisions
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CURRENT WEATHER SECTION -->
+        <section id="current-weather-section" class="weather-section hidden">
+            <div class="weather-card">
+                <div id="current-weather-content" class="weather-content">
+                    <!-- Rempli par JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- FORECAST SECTION -->
+        <section id="forecast-section" class="forecast-section hidden">
+            <h2>📅 Prévisions Météo</h2>
+            <div class="forecast-options">
+                <label for="days-select">Nombre de jours :</label>
+                <select id="days-select">
+                    <option value="3">3 jours</option>
+                    <option value="5">5 jours</option>
+                    <option value="7">7 jours</option>
+                </select>
+            </div>
+            <div id="forecast-content" class="forecast-grid">
+                <!-- Rempli par JavaScript -->
+            </div>
+        </section>
+
+        <!-- LOADING SPINNER -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Chargement...</p>
+        </div>
+
+        <!-- ERROR MESSAGE -->
+        <div id="error" class="error hidden">
+            <p id="error-message"></p>
+            <button class="close-btn" onclick="closeError()">✕</button>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
